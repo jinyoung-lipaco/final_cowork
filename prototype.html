@@ -587,11 +587,14 @@
   .std-screen-header p{font-size:12px;color:var(--sub);line-height:1.6;}
   .std-screen-header .std-stat-row{
     display:flex;gap:12px;margin-top:12px;
+    overflow-x:auto;scrollbar-width:none;
   }
+  .std-screen-header .std-stat-row::-webkit-scrollbar{display:none;}
   .std-screen-header .std-stat{
     display:flex;align-items:center;gap:4px;
     font-size:11px;font-weight:600;color:var(--pri);
     background:#fff;padding:5px 12px;border-radius:10px;
+    white-space:nowrap;flex:0 0 auto;
   }
 
   /* 카테고리 투표 카드 */
