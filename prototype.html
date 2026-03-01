@@ -596,6 +596,8 @@
     background:#fff;padding:5px 12px;border-radius:10px;
     white-space:nowrap;flex:0 0 auto;
   }
+  .std-screen-header .std-stat.clickable{cursor:pointer;}
+  .std-screen-header .std-stat.clickable:active{transform:scale(0.98);}
 
   /* 카테고리 투표 카드 */
   .vote-category{
@@ -820,6 +822,45 @@
   }
   .prof-danger-btn:active{background:#F5F5F5;}
   .prof-danger-btn.red{color:var(--acc);}
+
+  /* 명예의 전당 */
+  .hall-wrap{padding:14px;}
+  .hall-hero{
+    background:linear-gradient(135deg,#FFF8E6,#FFFDF5);
+    border:1px solid #FFE0B2;border-radius:14px;
+    padding:16px;margin-bottom:12px;
+  }
+  .hall-hero h3{font-size:15px;font-weight:800;color:#E8890C;margin-bottom:4px;}
+  .hall-hero p{font-size:11px;color:#B8860B;line-height:1.7;}
+  .hall-section{margin-bottom:14px;}
+  .hall-title{
+    font-size:13px;font-weight:800;margin-bottom:8px;
+    display:flex;align-items:center;gap:6px;
+  }
+  .hall-item{
+    display:flex;align-items:center;gap:10px;
+    background:#fff;border:1px solid var(--border);border-radius:12px;
+    padding:10px 12px;margin-bottom:7px;
+  }
+  .hall-rank{
+    width:24px;height:24px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:11px;font-weight:800;flex-shrink:0;
+    background:#F0EDFF;color:var(--pri);
+  }
+  .hall-avatar{
+    width:34px;height:34px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:16px;flex-shrink:0;
+  }
+  .hall-info{flex:1;}
+  .hall-info .name{font-size:12px;font-weight:700;}
+  .hall-info .meta{font-size:10px;color:var(--sub);}
+  .hall-badge{
+    font-size:9px;font-weight:700;padding:3px 8px;border-radius:8px;
+    background:#FAF0EE;color:var(--acc);
+  }
+  .hall-badge.starfall{background:#EBFBEE;color:var(--mint);}
 
   /* ═══════ SUB SCREEN COMMON ═══════ */
   .sub-content{padding:16px 14px;}
@@ -1366,10 +1407,18 @@
         <h2>📐 스탠다드</h2>
         <p>엄마들이 직접 기준을 세우고,<br>기준에 맞는 인정템을 찾아요</p>
         <div class="std-stat-row">
-          <div class="std-stat">🗳️ 진행 중 투표 <strong style="margin:0 0 0 4px;display:inline;">12</strong></div>
-          <div class="std-stat">🏅 인정템 <strong style="margin:0 0 0 4px;display:inline;">48</strong>개</div>
-          <div class="std-stat">👩‍👧 참여맘 <strong style="margin:0 0 0 4px;display:inline;">1,200+</strong>명</div>
+          <div class="std-stat clickable" onclick="openStandardVote()">🗳️ 진행 중 투표 <strong style="margin:0 0 0 4px;display:inline;">12</strong></div>
+          <div class="std-stat clickable" onclick="openStandardApproved()">🏅 인정템 <strong style="margin:0 0 0 4px;display:inline;">48</strong>개</div>
+          <div class="std-stat clickable" onclick="goSub('s-member-hall')">👩‍👧 참여맘 <strong style="margin:0 0 0 4px;display:inline;">1,200+</strong>명</div>
         </div>
+      </div>
+
+      <!-- Trust Bar -->
+      <div class="std-trust-bar">
+        <div class="std-trust-item"><span class="sti-icon">👩‍👧</span> 엄마들이 직접 선정</div>
+        <div class="std-trust-item"><span class="sti-icon">📊</span> 투표로 기준 확정</div>
+        <div class="std-trust-item"><span class="sti-icon">🔬</span> EWG 데이터 참고</div>
+        <div class="std-trust-item"><span class="sti-icon">🏅</span> 기준 충족 인정템</div>
       </div>
 
       <div class="seg-tabs" id="std-screen-tabs">
@@ -2129,6 +2178,63 @@
       <div class="prof-danger">
         <button class="prof-danger-btn" onclick="alert('로그아웃 되었습니다')">로그아웃</button>
         <button class="prof-danger-btn red" onclick="alert('정말 탈퇴하시겠습니까?')">탈퇴하기</button>
+      </div>
+    </div>
+
+    <!-- ═══════ SUB: 참여맘 명예의 전당 ═══════ -->
+    <div class="screen sub-screen hidden-right" id="s-member-hall">
+      <div class="back-header" onclick="goBack()">
+        <span class="arrow">←</span> 스탠다드
+      </div>
+      <div class="hall-wrap">
+        <div class="hall-hero">
+          <h3>🏆 참여맘 명예의 전당</h3>
+          <p>활동 점수와 기준 적중률을 바탕으로 이번 달 우수 참여맘을 소개해요.</p>
+        </div>
+
+        <div class="hall-section">
+          <div class="hall-title">💎 인증단</div>
+          <div class="hall-item">
+            <div class="hall-rank">1</div>
+            <div class="hall-avatar" style="background:linear-gradient(135deg,#FFD43B,#FFA94D);">🦊</div>
+            <div class="hall-info"><div class="name">민준맘</div><div class="meta">투표 132회 · 리뷰 54개 · 적중률 91%</div></div>
+            <div class="hall-badge">인증단</div>
+          </div>
+          <div class="hall-item">
+            <div class="hall-rank">2</div>
+            <div class="hall-avatar" style="background:linear-gradient(135deg,#74B9FF,#339AF0);">👶</div>
+            <div class="hall-info"><div class="name">서연맘</div><div class="meta">투표 121회 · 리뷰 47개 · 적중률 89%</div></div>
+            <div class="hall-badge">인증단</div>
+          </div>
+          <div class="hall-item">
+            <div class="hall-rank">3</div>
+            <div class="hall-avatar" style="background:linear-gradient(135deg,#C9929F,#B87190);">🌼</div>
+            <div class="hall-info"><div class="name">소율맘</div><div class="meta">투표 109회 · 리뷰 41개 · 적중률 86%</div></div>
+            <div class="hall-badge">인증단</div>
+          </div>
+        </div>
+
+        <div class="hall-section">
+          <div class="hall-title">🌟 별똥별맘</div>
+          <div class="hall-item">
+            <div class="hall-rank">1</div>
+            <div class="hall-avatar" style="background:linear-gradient(135deg,#8DB8A0,#6B9E82);">🌸</div>
+            <div class="hall-info"><div class="name">지우맘</div><div class="meta">투표 88회 · 리뷰 22개 · 적중률 84%</div></div>
+            <div class="hall-badge starfall">별똥별맘</div>
+          </div>
+          <div class="hall-item">
+            <div class="hall-rank">2</div>
+            <div class="hall-avatar" style="background:linear-gradient(135deg,#E8C9A0,#D4AA78);">🐥</div>
+            <div class="hall-info"><div class="name">하은맘</div><div class="meta">투표 76회 · 리뷰 19개 · 적중률 82%</div></div>
+            <div class="hall-badge starfall">별똥별맘</div>
+          </div>
+          <div class="hall-item">
+            <div class="hall-rank">3</div>
+            <div class="hall-avatar" style="background:linear-gradient(135deg,#C9A5B5,#A1788B);">🐰</div>
+            <div class="hall-info"><div class="name">수아맘</div><div class="meta">투표 70회 · 리뷰 17개 · 적중률 80%</div></div>
+            <div class="hall-badge starfall">별똥별맘</div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -3338,6 +3444,28 @@ stdScreenTabs.forEach(function(tab, idx){
     if(target) target.style.display = '';
   });
 });
+
+function openStandardApproved(){
+  stdScreenTabs.forEach(function(t){ t.classList.remove('active'); });
+  if(stdScreenTabs[1]) stdScreenTabs[1].classList.add('active');
+  stdScreenPanels.forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.style.display = 'none';
+  });
+  var approved = document.getElementById('std-screen-approved');
+  if(approved) approved.style.display = '';
+}
+
+function openStandardVote(){
+  stdScreenTabs.forEach(function(t){ t.classList.remove('active'); });
+  if(stdScreenTabs[0]) stdScreenTabs[0].classList.add('active');
+  stdScreenPanels.forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.style.display = 'none';
+  });
+  var vote = document.getElementById('std-screen-vote');
+  if(vote) vote.style.display = '';
+}
 
 // ─── 알림 탭 전환 ───
 document.querySelectorAll('#notiTabs .noti-tab').forEach(function(tab){
